@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, FlatList, Text, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../styles/global';
+import Card from '../shared/card';
 
 export default function Home({ navigation }) {
     const [reviews, setReviews] = useState([
         { title: 'Alpha diallo', rating: 5, body: 'developpeur mobile', key: '1' },
-        { title: 'Nafiou diallo', rating: 8, body: 'developpeur IOS', key: '2' },
-        { title: 'Saidou diallo', rating: 10, body: 'developpeur Web', key: '3' }
+        { title: 'Nafiou diallo', rating: 4, body: 'developpeur IOS', key: '2' },
+        { title: 'Saidou diallo', rating: 3, body: 'developpeur Web', key: '3' }
     ]);
 
     return (
@@ -15,7 +16,9 @@ export default function Home({ navigation }) {
                 data={reviews}
                 renderItem={({ item }) => (
                     <TouchableOpacity onPress={() => navigation.navigate('ReviewDetails', item)}>
-                        <Text style={globalStyles.titleText}>{item.title}</Text>
+                        <Card>
+                            <Text style={globalStyles.titleText}>{item.title}</Text>
+                        </Card>
                     </TouchableOpacity>
                 )}
             />
