@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, FlatList, Text, TouchableOpacity} from 'react-native';
+import { StyleSheet, View, FlatList, Text, TouchableOpacity, Modal, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { globalStyles } from '../styles/global';
 import Card from '../shared/card';
+import ReviewForm from './reviewForm';
 
 
 export default function Home({ navigation }) {
     const [reviews, setReviews] = useState([
         { title: 'Alpha diallo', rating: 5, body: 'developpeur mobile', key: '1' },
         { title: 'Nafiou diallo', rating: 4, body: 'developpeur IOS', key: '2' },
-        { title: 'Saidou diallo', rating: 3, body: 'developpeur Web', key: '3' }
+        { title: 'Saidou diallo', rating: 3, body: 'developpeur Web', key: '3' },
     ]);
-
+    const addReview = (review) => {
+        review.key = Math.random().toString();
+        setReviews((currentReviews) => {
+            return [review, ...currentReviews];
+        });
+    }
     return (
         <View style={globalStyles.container}>
+            <Modal>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style={styles.modalContent}>
+                    <ReviewForm addReview={addReview} />
+                </View>
+            </TouchableWithoutFeedback>
+            </Modal>
             <FlatList
                 data={reviews}
                 renderItem={({ item }) => (
@@ -36,11 +49,11 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignSelf: 'center',
     },
-    modalClose:{
-        marginTop:20,
-        marginBottom:0,
+    modalClose: {
+        marginTop: 20,
+        marginBottom: 0,
     },
-    modalContent:{
+    modalContent: {
         flex: 1,
     }
 });
