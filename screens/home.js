@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, FlatList, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, FlatList, Text, TouchableOpacity} from 'react-native';
 import { globalStyles } from '../styles/global';
 import Card from '../shared/card';
+
 
 export default function Home({ navigation }) {
     const [reviews, setReviews] = useState([
@@ -26,3 +27,20 @@ export default function Home({ navigation }) {
         </View>
     )
 }
+const styles = StyleSheet.create({
+    modalToggle: {
+        marginBottom: 10,
+        borderWidth: 1,
+        borderColor: '#f2f2f2',
+        padding: 10,
+        borderRadius: 10,
+        alignSelf: 'center',
+    },
+    modalClose:{
+        marginTop:20,
+        marginBottom:0,
+    },
+    modalContent:{
+        flex: 1,
+    }
+});
