@@ -12,7 +12,6 @@ const reviewSchema = yup.object({
         return parseInt(val) < 6 && parseInt(val) > 0;
     })
 });
-
 export default function ReviewForm({ addReview }) {
     return (
         <View style={globalStyles.container}>
